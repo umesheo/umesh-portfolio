@@ -8,9 +8,9 @@ export const profile = {
   location: "West Coast, New Zealand",
   email: "Umesh.budathoki23@gmail.com",
   summary:
-    "MIT graduate and full-stack developer who turns business needs into practical, scalable software. I design and build in-house applications, integrations and APIs across council core systems — from .NET and Blazor platforms to React front-ends, mobile apps and cloud automation.",
+    "MIT graduate and full-stack developer who turns business needs into practical, scalable software. Design and build in-house applications, integrations and APIs across council core systems — from .NET and Blazor platforms to React front-ends, mobile apps and cloud automation.",
   about:
-    "I'm a software engineer based on New Zealand's West Coast with a Master of Information Technology (First Class Honours). Over the past several years I've shipped products across .NET, React, Flutter and Azure — building everything from enterprise web platforms and community mobile apps to native macOS utilities. I like the whole journey: understanding the problem, designing the architecture, writing clean code, and translating technical concepts into plain language for the people who use them.",
+    "A software engineer based on New Zealand's West Coast with a Master of Information Technology (First Class Honours). Over the past several years have shipped products across .NET, React, Flutter and Azure — building everything from enterprise web platforms and community mobile apps to native macOS utilities. The whole journey: understanding the problem, designing the architecture, writing clean code, and translating technical concepts into plain language for the people who use them.",
   github: "https://github.com/umesheo",
   linkedin: "https://www.linkedin.com/in/umesh-budhathoki-208832106/",
   socials: [
@@ -171,7 +171,7 @@ export const projects = [
   {
     title: "Mihitek",
     subtitle: "IT services & digital solutions",
-    year: "2025",
+    year: "2026",
     category: "Web · IT Services",
     description:
       "Corporate website for Mihitek, a New Zealand IT services company delivering cloud architecture, cybersecurity, software development and 24/7 support. Built to showcase their services — IT support, cloud, cyber security, app and web development, AI solutions and onsite assistance — with a modern, trust-focused design and lead capture.",
