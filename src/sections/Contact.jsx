@@ -26,8 +26,13 @@ export default function Contact() {
                 </a>
               </Magnetic>
               <Magnetic>
-                <a className="btn btn-ghost" href={`tel:${profile.phone.replace(/\s/g, "")}`}>
-                  {profile.phone}
+                <a
+                  className="btn btn-ghost"
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
                 </a>
               </Magnetic>
             </div>

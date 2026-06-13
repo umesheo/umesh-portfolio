@@ -7,7 +7,6 @@ export const profile = {
   tagline: "Full-Stack Developer crafting web, mobile & cloud systems.",
   location: "West Coast, New Zealand",
   email: "Umesh.budathoki23@gmail.com",
-  phone: "022 654 7394",
   summary:
     "MIT graduate and full-stack developer who turns business needs into practical, scalable software. I design and build in-house applications, integrations and APIs across council core systems — from .NET and Blazor platforms to React front-ends, mobile apps and cloud automation.",
   about:
@@ -108,7 +107,7 @@ export const projects = [
   {
     title: "NotchBar",
     subtitle: "Spotify in your Mac notch",
-    year: "2025",
+    year: "2026",
     category: "Native macOS · Swift",
     description:
       "A native macOS utility that turns the unused MacBook notch into a personal Spotify player — album art, live waveforms and full playback controls that expand on hover, just like Dynamic Island. Built native in Swift, under 5 MB and less than 1% CPU.",
@@ -118,12 +117,12 @@ export const projects = [
     featured: true,
   },
   {
-    title: "Coast Waters Ltd",
-    subtitle: "Reform & rates redesign",
-    year: "2025",
-    category: "Web Platform · Redesign",
+    title: "Coast Waters Ltd (Demo)",
+    subtitle: "Demo for Coast Waters Ltd",
+    year: "2026",
+    category: "Web Platform · Demo Redesign",
     description:
-      "A redesigned digital experience for Coast Waters Ltd — a CCO established by the Buller, Grey and Westland District Councils. Features an interactive West Coast map, district rate explorers and a transition roadmap that makes a $258.5M infrastructure reform easy to understand.",
+      "A demo redesign of the Coast Waters Ltd website, created for presentation purposes. Coast Waters is a CCO established by the Buller, Grey and Westland District Councils — this concept explores an interactive West Coast map, district rate explorers and a transition roadmap that makes a $258.5M infrastructure reform easy to understand.",
     tags: ["React", "Interactive Map", "Data Viz", "UX"],
     href: "https://coast-waters-redesign.vercel.app/",
     accent: "#2ea6e6",
@@ -158,7 +157,7 @@ export const projects = [
   {
     title: "HikerVerse",
     subtitle: "Discover NZ's best trails",
-    year: "2026",
+    year: "2025",
     category: "Mobile App · Personal",
     description:
       "A personal mobile app for hikers and campers to discover the best hiking and camping spots around New Zealand. Browse curated places with locations, ratings and reviews, search and save favourites — wrapped in a playful, hand-drawn UI.",
@@ -168,6 +167,18 @@ export const projects = [
     href: "https://github.com/umesheo",
     accent: "#16a34a",
     featured: true,
+  },
+  {
+    title: "Mihitek",
+    subtitle: "IT services & digital solutions",
+    year: "2025",
+    category: "Web · IT Services",
+    description:
+      "Corporate website for Mihitek, a New Zealand IT services company delivering cloud architecture, cybersecurity, software development and 24/7 support. Built to showcase their services — IT support, cloud, cyber security, app and web development, AI solutions and onsite assistance — with a modern, trust-focused design and lead capture.",
+    tags: ["Web Design", "Responsive", "SEO", "Lead Gen"],
+    href: "https://mihitek.com/",
+    accent: "#6366f1",
+    featured: false,
   },
   {
     title: "Creovira",
