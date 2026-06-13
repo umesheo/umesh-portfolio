@@ -86,7 +86,7 @@ export default function Hero() {
             animate="show"
           >
             Hi, I'm <strong>Umesh</strong> — a full-stack developer at{" "}
-            <strong>Buller District Council</strong>. I build web, mobile and
+            <strong>Buller District Council</strong>. Expertise in web, mobile and
             cloud systems that turn complex problems into clean, usable products.
           </motion.p>
 
