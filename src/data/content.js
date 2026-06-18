@@ -105,6 +105,19 @@ export const experiences = [
 
 export const projects = [
   {
+    title: "DHUN",
+    subtitle: "Guitar tuner, built from scratch",
+    year: "2026",
+    category: "Mobile App · Personal",
+    description:
+      "DHUN — a word that means \"tune\" — is a guitar tuner app built from scratch because finding a decent free one shouldn't be a hassle. Chromatic and hertz modes, per-string tuning, a built-in metronome and a clean dark UI. No subscriptions, no ads, no compromises — just the developer privilege of building what you want the way you want it.",
+    tags: ["Mobile", "Audio", "Guitar", "Free"],
+    image: "/projects/dhun.png",
+    href: "https://github.com/umesheo",
+    accent: "#a3e635",
+    featured: true,
+  },
+  {
     title: "NotchBar",
     subtitle: "Spotify in your Mac notch",
     year: "2026",
