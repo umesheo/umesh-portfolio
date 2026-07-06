@@ -129,18 +129,7 @@ export const projects = [
     accent: "#1db954",
     featured: true,
   },
-  {
-    title: "Coast Waters Ltd (Demo)",
-    subtitle: "Demo for Coast Waters Ltd",
-    year: "2026",
-    category: "Web Platform · Demo Redesign",
-    description:
-      "A demo redesign of the Coast Waters Ltd website, created for presentation purposes. Coast Waters is a CCO established by the Buller, Grey and Westland District Councils — this concept explores an interactive West Coast map, district rate explorers and a transition roadmap that makes a $258.5M infrastructure reform easy to understand.",
-    tags: ["React", "Interactive Map", "Data Viz", "UX"],
-    href: "https://coast-waters-redesign.vercel.app/",
-    accent: "#2ea6e6",
-    featured: true,
-  },
+ 
   {
     title: "BDC Connect",
     subtitle: "Community engagement app",
