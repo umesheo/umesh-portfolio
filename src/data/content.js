@@ -105,6 +105,43 @@ export const experiences = [
 
 export const projects = [
   {
+    title: "Handy Hawes",
+    subtitle: "Trades and handyman services website",
+    year: "2026",
+    category: "Web Platform · Client Project",
+    description:
+      "A polished business website built for Handy Hawes to clearly showcase services, trust signals and contact pathways. The project focused on a clean conversion-friendly experience that helps visitors quickly understand the offering and get in touch.",
+    tags: ["Website", "Client Work", "Responsive", "Lead Gen"],
+    href: "https://handyhawes.com",
+    accent: "#f59e0b",
+    featured: true,
+  },
+  {
+    title: "Nepali Bus",
+    subtitle: "A nostalgic ride through Nepali bus culture",
+    year: "2026",
+    category: "Creative Web · Side Project",
+    description:
+      "A tiny nostalgia project that recreates the feeling of old Nepali local bus rides on the web. Users hop onto a virtual bus, listen to classic Nepali songs and soak in bus ko pachhadi lekhine shayari vibes, built purely to bring a little piece of Nepal back to life online.",
+    tags: ["Creative Coding", "Nepal", "Music", "Side Project"],
+    href: "https://lnkd.in/eQFkJ46S",
+    accent: "#ef4444",
+    featured: true,
+  },
+  {
+    title: "Productivity Board",
+    subtitle: "Notes, reminders and screensaver in one",
+    year: "2026",
+    category: "Desktop Utility · Personal Product",
+    description:
+      "A premium productivity app that turns an idle third monitor into a live notes and reminders screensaver. It combines quick sticky-note style capture, reminders and ambient background sounds like white noise, rain and ocean waves to make a spare screen genuinely useful.",
+    tags: ["Productivity", "Notes", "Reminders", "Screensaver"],
+    image: "/projects/productivity-board.png",
+    href: "https://calm-paprenjak-bf128b.netlify.app",
+    accent: "#14b8a6",
+    featured: true,
+  },
+  {
     title: "DHUN",
     subtitle: "Guitar tuner, built from scratch",
     year: "2026",

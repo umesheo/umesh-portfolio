@@ -58,7 +58,7 @@ export default function About() {
           <Reveal variant="scale" delay={0.08} className="about-portrait">
             <div className="about-portrait-glow" />
             <div className="about-portrait-frame">
-              <img src="/umesh.png" alt="Portrait of Umesh Budhathoki" />
+              <img src="/umesh-photo.png" alt="Portrait of Umesh Budhathoki" />
             </div>
             <span className="about-portrait-tag">
               <span className="pdot" />

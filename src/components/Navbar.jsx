@@ -57,7 +57,7 @@ export default function Navbar() {
           onClick={(e) => go(e, "hero")}
           aria-label="Home"
         >
-          <span className="dot" />
+          <img src="/brand-mark.png" alt="UB logo" />
           Umesh.B
         </a>
 

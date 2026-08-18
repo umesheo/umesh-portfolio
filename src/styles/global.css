@@ -250,12 +250,12 @@ img {
   align-items: center;
   gap: 9px;
 }
-.nav-logo .dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 16px var(--glow);
+.nav-logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.08);
 }
 .nav-links {
   display: flex;
