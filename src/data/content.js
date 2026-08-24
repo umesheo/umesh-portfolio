@@ -105,25 +105,29 @@ export const experiences = [
 
 export const projects = [
   {
-    title: "Handy Hawes",
-    subtitle: "Trades and handyman services website",
+    title: "Handyman Hawes",
+    subtitle: "Built tough. Done right.",
     year: "2026",
     category: "Web Platform · Client Project",
     description:
-      "A polished business website built for Handy Hawes to clearly showcase services, trust signals and contact pathways. The project focused on a clean conversion-friendly experience that helps visitors quickly understand the offering and get in touch.",
+      "A conversion-focused website for Handyman Hawes — a Westport tradesman serving Reefton, Karamea, Punakaiki and the wider Buller District. Clear services, trust signals, reviews and quote CTAs help locals book handyman and home repair work fast.",
     tags: ["Website", "Client Work", "Responsive", "Lead Gen"],
+    visualType: "poster",
+    image: "/projects/handyman-hawes.jpg",
     href: "https://handyhawes.com",
     accent: "#f59e0b",
     featured: true,
   },
   {
     title: "Nepali Bus",
-    subtitle: "A nostalgic ride through Nepali bus culture",
+    subtitle: "नेपाली बस — बस साहित्य",
     year: "2026",
     category: "Creative Web · Side Project",
     description:
-      "A tiny nostalgia project that recreates the feeling of old Nepali local bus rides on the web. Users hop onto a virtual bus, listen to classic Nepali songs and soak in bus ko pachhadi lekhine shayari vibes, built purely to bring a little piece of Nepal back to life online.",
+      "A nostalgia project that recreates old Nepali local bus rides on the web. Hop on a virtual bus, listen to classic Nepali songs and soak in bus ko pachhadi lekhine shayari vibes — built to bring a little piece of Nepal back to life online.",
     tags: ["Creative Coding", "Nepal", "Music", "Side Project"],
+    visualType: "poster",
+    image: "/projects/nepali-bus.jpg",
     href: "https://lnkd.in/eQFkJ46S",
     accent: "#ef4444",
     featured: true,
@@ -136,6 +140,7 @@ export const projects = [
     description:
       "A premium productivity app that turns an idle third monitor into a live notes and reminders screensaver. It combines quick sticky-note style capture, reminders and ambient background sounds like white noise, rain and ocean waves to make a spare screen genuinely useful.",
     tags: ["Productivity", "Notes", "Reminders", "Screensaver"],
+    visualType: "poster",
     image: "/projects/productivity-board.png",
     href: "https://calm-paprenjak-bf128b.netlify.app",
     accent: "#14b8a6",
@@ -162,11 +167,26 @@ export const projects = [
     description:
       "A native macOS utility that turns the unused MacBook notch into a personal Spotify player — album art, live waveforms and full playback controls that expand on hover, just like Dynamic Island. Built native in Swift, under 5 MB and less than 1% CPU.",
     tags: ["Swift", "macOS", "Spotify API", "UI/UX"],
+    visualType: "poster",
+    image: "/projects/notchbar.jpg",
     href: "https://notchbar-website.vercel.app/",
     accent: "#1db954",
     featured: true,
   },
- 
+  {
+    title: "Mihitek",
+    subtitle: "Build digital products that grow businesses",
+    year: "2026",
+    category: "Web · Product Studio",
+    description:
+      "Corporate website for Mihitek, a New Zealand product studio building custom apps, websites, micro SaaS and digital strategy. Designed to showcase services, products and a clear path to talk — with a modern tech aesthetic and conversion-ready CTAs.",
+    tags: ["Web Design", "Responsive", "SEO", "Lead Gen"],
+    visualType: "poster",
+    image: "/projects/mihitek.jpg",
+    href: "https://mihitek.com/",
+    accent: "#2e5bff",
+    featured: true,
+  },
   {
     title: "BDC Connect",
     subtitle: "Community engagement app",
@@ -206,18 +226,6 @@ export const projects = [
     href: "https://github.com/umesheo",
     accent: "#16a34a",
     featured: true,
-  },
-  {
-    title: "Mihitek",
-    subtitle: "IT services & digital solutions",
-    year: "2026",
-    category: "Web · IT Services",
-    description:
-      "Corporate website for Mihitek, a New Zealand IT services company delivering cloud architecture, cybersecurity, software development and 24/7 support. Built to showcase their services — IT support, cloud, cyber security, app and web development, AI solutions and onsite assistance — with a modern, trust-focused design and lead capture.",
-    tags: ["Web Design", "Responsive", "SEO", "Lead Gen"],
-    href: "https://mihitek.com/",
-    accent: "#6366f1",
-    featured: false,
   },
   {
     title: "Creovira",
