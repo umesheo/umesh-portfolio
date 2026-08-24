@@ -1,130 +1,125 @@
-import { Suspense, useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Icosahedron, Grid } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { Icosahedron, Grid } from "@react-three/drei";
 import * as THREE from "three";
 
-/* Central wireframe core — a glowing geometric "engine" */
 function Core({ mouse }) {
   const group = useRef();
   const wire = useRef();
   const outer = useRef();
 
   useFrame((state, delta) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     if (group.current) {
       group.current.rotation.y +=
-        delta * 0.15 + (mouse.current.x * 0.4 - group.current.rotation.y) * 0.02;
+        delta * 0.12 + (mouse.current.x * 0.35 - group.current.rotation.y) * 0.02;
       group.current.rotation.x +=
-        (mouse.current.y * 0.3 - group.current.rotation.x) * 0.02;
+        (mouse.current.y * 0.25 - group.current.rotation.x) * 0.02;
     }
-    if (wire.current) wire.current.rotation.z = t * 0.25;
+    if (wire.current) wire.current.rotation.z = t * 0.2;
     if (outer.current) {
-      outer.current.rotation.y = -t * 0.18;
-      outer.current.rotation.x = t * 0.12;
+      outer.current.rotation.y = -t * 0.14;
+      outer.current.rotation.x = t * 0.1;
     }
   });
 
   return (
     <group ref={group}>
-      <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.8}>
-        {/* solid dark core */}
-        <Icosahedron args={[1.05, 1]}>
-          <meshStandardMaterial
-            color="#0c0c16"
-            roughness={0.3}
-            metalness={0.9}
-            emissive="#1a1140"
-            emissiveIntensity={0.5}
-          />
-        </Icosahedron>
-        {/* glowing wireframe shell */}
-        <Icosahedron ref={wire} args={[1.32, 1]}>
-          <meshBasicMaterial color="#7c5cff" wireframe />
-        </Icosahedron>
-        {/* outer cyan cage */}
-        <Icosahedron ref={outer} args={[1.85, 0]}>
-          <meshBasicMaterial
-            color="#22d3ee"
-            wireframe
-            transparent
-            opacity={0.45}
-          />
-        </Icosahedron>
-      </Float>
+      <Icosahedron args={[1.05, 1]}>
+        <meshBasicMaterial color="#16122a" />
+      </Icosahedron>
+      <Icosahedron ref={wire} args={[1.32, 1]}>
+        <meshBasicMaterial color="#7c5cff" wireframe />
+      </Icosahedron>
+      <Icosahedron ref={outer} args={[1.85, 0]}>
+        <meshBasicMaterial
+          color="#22d3ee"
+          wireframe
+          transparent
+          opacity={0.4}
+        />
+      </Icosahedron>
     </group>
   );
 }
 
-/* Animated network constellation — nodes + dynamic connecting lines */
-function Network({ count = 52 }) {
+/* Lightweight constellation — squared distance, throttled line rebuild */
+function Network({ count = 24 }) {
   const pointsRef = useRef();
   const linesRef = useRef();
+  const frame = useRef(0);
+  const thresholdSq = 6.25; // 2.5²
 
-  const bounds = useMemo(() => new THREE.Vector3(6.2, 3.6, 3.2), []);
+  const bounds = useMemo(() => ({ x: 5.5, y: 3.2, z: 2.8 }), []);
   const nodes = useMemo(() => {
     const arr = [];
     for (let i = 0; i < count; i++) {
       arr.push({
-        pos: new THREE.Vector3(
-          (Math.random() - 0.5) * bounds.x * 2,
-          (Math.random() - 0.5) * bounds.y * 2,
-          (Math.random() - 0.5) * bounds.z * 2
-        ),
-        vel: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.006,
-          (Math.random() - 0.5) * 0.006,
-          (Math.random() - 0.5) * 0.006
-        ),
+        x: (Math.random() - 0.5) * bounds.x * 2,
+        y: (Math.random() - 0.5) * bounds.y * 2,
+        z: (Math.random() - 0.5) * bounds.z * 2,
+        vx: (Math.random() - 0.5) * 0.005,
+        vy: (Math.random() - 0.5) * 0.005,
+        vz: (Math.random() - 0.5) * 0.005,
       });
     }
     return arr;
   }, [count, bounds]);
 
   const pointPositions = useMemo(() => new Float32Array(count * 3), [count]);
-  const maxSegments = count * 8;
+  const maxSegments = count * 4;
   const linePositions = useMemo(
     () => new Float32Array(maxSegments * 2 * 3),
     [maxSegments]
   );
 
   useFrame(() => {
+    frame.current += 1;
+    const rebuildLines = frame.current % 3 === 0;
+
     for (let i = 0; i < count; i++) {
       const n = nodes[i];
-      n.pos.add(n.vel);
-      if (n.pos.x > bounds.x || n.pos.x < -bounds.x) n.vel.x *= -1;
-      if (n.pos.y > bounds.y || n.pos.y < -bounds.y) n.vel.y *= -1;
-      if (n.pos.z > bounds.z || n.pos.z < -bounds.z) n.vel.z *= -1;
-      pointPositions[i * 3] = n.pos.x;
-      pointPositions[i * 3 + 1] = n.pos.y;
-      pointPositions[i * 3 + 2] = n.pos.z;
-    }
-
-    let s = 0;
-    const threshold = 2.5;
-    for (let i = 0; i < count && s < maxSegments; i++) {
-      for (let j = i + 1; j < count && s < maxSegments; j++) {
-        const d = nodes[i].pos.distanceTo(nodes[j].pos);
-        if (d < threshold) {
-          linePositions[s * 6] = nodes[i].pos.x;
-          linePositions[s * 6 + 1] = nodes[i].pos.y;
-          linePositions[s * 6 + 2] = nodes[i].pos.z;
-          linePositions[s * 6 + 3] = nodes[j].pos.x;
-          linePositions[s * 6 + 4] = nodes[j].pos.y;
-          linePositions[s * 6 + 5] = nodes[j].pos.z;
-          s++;
-        }
-      }
+      n.x += n.vx;
+      n.y += n.vy;
+      n.z += n.vz;
+      if (n.x > bounds.x || n.x < -bounds.x) n.vx *= -1;
+      if (n.y > bounds.y || n.y < -bounds.y) n.vy *= -1;
+      if (n.z > bounds.z || n.z < -bounds.z) n.vz *= -1;
+      pointPositions[i * 3] = n.x;
+      pointPositions[i * 3 + 1] = n.y;
+      pointPositions[i * 3 + 2] = n.z;
     }
 
     if (pointsRef.current) {
       pointsRef.current.geometry.attributes.position.needsUpdate = true;
     }
-    if (linesRef.current) {
-      const geo = linesRef.current.geometry;
-      geo.attributes.position.needsUpdate = true;
-      geo.setDrawRange(0, s * 2);
+
+    if (!rebuildLines || !linesRef.current) return;
+
+    let s = 0;
+    for (let i = 0; i < count && s < maxSegments; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < count && s < maxSegments; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dz = a.z - b.z;
+        if (dx * dx + dy * dy + dz * dz < thresholdSq) {
+          const o = s * 6;
+          linePositions[o] = a.x;
+          linePositions[o + 1] = a.y;
+          linePositions[o + 2] = a.z;
+          linePositions[o + 3] = b.x;
+          linePositions[o + 4] = b.y;
+          linePositions[o + 5] = b.z;
+          s++;
+        }
+      }
     }
+
+    const geo = linesRef.current.geometry;
+    geo.attributes.position.needsUpdate = true;
+    geo.setDrawRange(0, s * 2);
   });
 
   return (
@@ -139,10 +134,10 @@ function Network({ count = 52 }) {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.07}
+          size={0.06}
           color="#9d8cff"
           transparent
-          opacity={0.9}
+          opacity={0.85}
           sizeAttenuation
           depthWrite={false}
           blending={THREE.AdditiveBlending}
@@ -160,7 +155,7 @@ function Network({ count = 52 }) {
         <lineBasicMaterial
           color="#3aa0ff"
           transparent
-          opacity={0.22}
+          opacity={0.2}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
@@ -169,13 +164,12 @@ function Network({ count = 52 }) {
   );
 }
 
-/* Background dust */
-function Dust({ count = 360 }) {
+function Dust({ count = 100 }) {
   const ref = useRef();
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 8 + Math.random() * 9;
+      const r = 8 + Math.random() * 8;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
@@ -186,7 +180,7 @@ function Dust({ count = 360 }) {
   }, [count]);
 
   useFrame((state) => {
-    if (ref.current) ref.current.rotation.y = state.clock.getElapsedTime() * 0.02;
+    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.015;
   });
 
   return (
@@ -200,10 +194,10 @@ function Dust({ count = 360 }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.03}
+        size={0.028}
         color="#ffffff"
         transparent
-        opacity={0.4}
+        opacity={0.35}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -215,9 +209,9 @@ function Dust({ count = 360 }) {
 function Rig({ mouse }) {
   useFrame((state) => {
     state.camera.position.x +=
-      (mouse.current.x * 0.7 - state.camera.position.x) * 0.04;
+      (mouse.current.x * 0.55 - state.camera.position.x) * 0.035;
     state.camera.position.y +=
-      (1 + mouse.current.y * 0.4 - state.camera.position.y) * 0.04;
+      (1 + mouse.current.y * 0.3 - state.camera.position.y) * 0.035;
     state.camera.lookAt(0, 0, 0);
   });
   return null;
@@ -225,60 +219,92 @@ function Rig({ mouse }) {
 
 export default function HeroScene() {
   const mouse = useRef({ x: 0, y: 0 });
-
-  const isMobile =
-    typeof window !== "undefined" &&
-    window.matchMedia("(max-width: 768px)").matches;
+  const [active, setActive] = useState(true);
+  const [isMobile] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 768px)").matches
+  );
+  const [reduceMotion] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 
   useEffect(() => {
+    if (reduceMotion) return undefined;
+
     const onMove = (e) => {
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.y = -((e.clientY / window.innerHeight) * 2 - 1);
     };
+
+    const hero = document.getElementById("hero");
+    const sync = () => {
+      const inView =
+        !document.hidden &&
+        (!hero ||
+          hero.getBoundingClientRect().bottom > 80);
+      setActive(inView);
+    };
+
+    const obs = hero
+      ? new IntersectionObserver(
+          ([entry]) => setActive(entry.isIntersecting && !document.hidden),
+          { rootMargin: "80px 0px", threshold: 0 }
+        )
+      : null;
+
+    if (hero && obs) obs.observe(hero);
     window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, []);
+    document.addEventListener("visibilitychange", sync);
+    sync();
+
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      document.removeEventListener("visibilitychange", sync);
+      obs?.disconnect();
+    };
+  }, [reduceMotion]);
+
+  if (reduceMotion) {
+    return <div className="hero-canvas hero-canvas-static" aria-hidden="true" />;
+  }
 
   return (
     <div className="hero-canvas" aria-hidden="true">
       <Canvas
         camera={{ position: [0, 1, 6], fov: 45 }}
-        dpr={isMobile ? [1, 1.5] : [1, 2]}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        dpr={isMobile ? 1 : [1, 1.25]}
+        frameloop={active ? "always" : "never"}
+        gl={{
+          antialias: !isMobile,
+          alpha: true,
+          powerPreference: "high-performance",
+          stencil: false,
+          depth: true,
+        }}
+        performance={{ min: 0.5 }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[5, 4, 5]} intensity={2.4} color="#7c5cff" />
-          <pointLight position={[-5, -2, -3]} intensity={2.6} color="#22d3ee" />
-
+          <ambientLight intensity={0.6} />
           <Core mouse={mouse} />
-          <Network count={isMobile ? 32 : 52} />
-          <Dust count={isMobile ? 180 : 360} />
-
+          <Network count={isMobile ? 16 : 24} />
+          <Dust count={isMobile ? 60 : 100} />
           <Grid
             position={[0, -3.4, 0]}
-            args={[40, 40]}
-            cellSize={0.8}
-            cellThickness={0.6}
+            args={[24, 24]}
+            cellSize={1}
+            cellThickness={0.5}
             cellColor="#1c2342"
             sectionSize={4}
-            sectionThickness={1}
+            sectionThickness={0.9}
             sectionColor="#3a2d7a"
-            fadeDistance={isMobile ? 18 : 26}
+            fadeDistance={isMobile ? 14 : 20}
             fadeStrength={4}
-            infiniteGrid
+            infiniteGrid={false}
           />
-
           <Rig mouse={mouse} />
-
-          <EffectComposer enabled={!isMobile}>
-            <Bloom
-              intensity={0.9}
-              luminanceThreshold={0.15}
-              luminanceSmoothing={0.5}
-              mipmapBlur
-            />
-          </EffectComposer>
         </Suspense>
       </Canvas>
     </div>

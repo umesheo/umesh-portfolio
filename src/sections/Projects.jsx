@@ -5,16 +5,16 @@ function Visual({ p }) {
   if (p.visualType === "poster") {
     return (
       <div className="proj-visual poster">
-        <img src={p.image} alt={`${p.title} overview`} loading="lazy" />
+        <img src={p.image} alt={`${p.title} overview`} loading="lazy" decoding="async" />
       </div>
     );
   }
   if (p.image) {
     return (
       <div className="proj-visual phones">
-        <img src={p.image} alt={`${p.title} screenshot`} loading="lazy" />
+        <img src={p.image} alt={`${p.title} screenshot`} loading="lazy" decoding="async" />
         {p.imageAlt && (
-          <img src={p.imageAlt} alt={`${p.title} screenshot`} loading="lazy" />
+          <img src={p.imageAlt} alt={`${p.title} screenshot`} loading="lazy" decoding="async" />
         )}
       </div>
     );

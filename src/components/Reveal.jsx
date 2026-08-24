@@ -10,8 +10,8 @@ export default function Reveal({
   children,
   variant = "up",
   delay = 0,
-  duration = 0.8,
-  amount = 0.25,
+  duration = 0.55,
+  amount = 0.2,
   className = "",
   as = "div",
 }) {

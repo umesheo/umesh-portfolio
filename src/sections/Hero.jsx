@@ -1,23 +1,25 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import HeroScene from "../three/HeroScene";
 import Magnetic from "../components/Magnetic";
 import { profile } from "../data/content";
 import { scrollTo } from "../components/SmoothScroll";
+
+const HeroScene = lazy(() => import("../three/HeroScene"));
 
 const lineVariant = {
   hidden: { y: "110%" },
   show: (i) => ({
     y: 0,
-    transition: { duration: 0.9, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.7, delay: 0.12 + i * 0.08, ease: [0.16, 1, 0.3, 1] },
   }),
 };
 
 const fade = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 18 },
   show: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: 0.7 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, delay: 0.45 + i * 0.08, ease: [0.16, 1, 0.3, 1] },
   }),
 };
 
@@ -29,7 +31,9 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero">
-      <HeroScene />
+      <Suspense fallback={<div className="hero-canvas" aria-hidden="true" />}>
+        <HeroScene />
+      </Suspense>
       <div className="hero-grain" />
 
       <div className="hero-inner">
@@ -116,7 +120,7 @@ export default function Hero() {
         className="hero-scroll"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
+        transition={{ delay: 1.1, duration: 0.7 }}
       >
         <span className="mouse" />
         Scroll

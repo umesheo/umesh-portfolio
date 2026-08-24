@@ -8,13 +8,12 @@ export function scrollTo(target, opts = {}) {
   if (lenisInstance) {
     lenisInstance.scrollTo(target, {
       offset: NAV_OFFSET,
-      duration: 1.2,
+      duration: 1.0,
       ...opts,
     });
     return;
   }
 
-  // Fallback when Lenis is unavailable (e.g. prefers-reduced-motion)
   let top = 0;
   if (typeof target === "number") {
     top = target;
@@ -36,25 +35,22 @@ export default function SmoothScroll({ children }) {
     ).matches;
     if (prefersReduced) return;
 
+    // Native scrolling is smoother/cheaper on touch devices
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouch) return;
+
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 0.95,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 1.6,
+      touchMultiplier: 1.4,
       syncTouch: false,
+      autoRaf: true,
     });
     lenisInstance = lenis;
 
-    let rafId;
-    function raf(time) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
     return () => {
-      cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisInstance = null;
     };

@@ -29,6 +29,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scroll-behavior: auto;
 }
 
 body {
@@ -37,6 +38,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
+  text-size-adjust: 100%;
 }
 
 /* Lenis */
@@ -65,6 +67,7 @@ button {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 ::selection {
   background: var(--accent);
@@ -98,6 +101,8 @@ img {
   position: relative;
   padding: clamp(80px, 12vw, 140px) 0;
   scroll-margin-top: 80px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
 }
 #hero {
   scroll-margin-top: 0;
@@ -330,6 +335,12 @@ img {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  contain: strict;
+}
+.hero-canvas-static {
+  background:
+    radial-gradient(55% 45% at 70% 35%, rgba(124, 92, 255, 0.22), transparent 70%),
+    radial-gradient(40% 35% at 30% 70%, rgba(34, 211, 238, 0.12), transparent 70%);
 }
 .hero-grain {
   position: absolute;
@@ -472,12 +483,21 @@ img {
   overflow: hidden;
   white-space: nowrap;
   background: var(--bg-soft);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 80px;
 }
 .marquee-track {
   display: inline-flex;
   gap: 48px;
   align-items: center;
-  animation: marquee 28s linear infinite;
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    will-change: auto;
+  }
 }
 .marquee-track span {
   font-family: var(--font-display);
