@@ -49,7 +49,7 @@ export default function About() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="section-title">
-            Engineer at heart, <span className="grad">problem-solver</span> by
+            Technologist at heart, <span className="grad">leader</span> by
             craft.
           </h2>
         </Reveal>

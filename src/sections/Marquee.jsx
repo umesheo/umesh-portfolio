@@ -1,11 +1,11 @@
 const words = [
-  "Full-Stack Development",
-  ".NET & Blazor",
-  "React & Three.js",
-  "Mobile Apps",
-  "Azure Cloud",
-  "UI / UX Design",
-  "System Architecture",
+  "IT Leadership",
+  "Cybersecurity",
+  "Business Transformation",
+  "AI & Automation",
+  "Infrastructure & Networks",
+  "GIS & Information Systems",
+  "Business Continuity",
 ];
 
 export default function Marquee() {

@@ -1,6 +1,6 @@
 # Umesh Budhathoki — Portfolio
 
-An award-winning style personal portfolio for **Umesh Budhathoki**, Business Systems Developer & Analyst at Buller District Council. Built with **React**, **Three.js** (react-three-fiber), **Framer Motion** and **Lenis** smooth scrolling.
+An award-winning style personal portfolio for **Umesh Budhathoki**, IT Manager at Buller District Council. Built with **React**, **Three.js** (react-three-fiber), **Framer Motion** and **Lenis** smooth scrolling.
 
 ## Highlights
 

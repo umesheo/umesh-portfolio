@@ -2,15 +2,15 @@ export const profile = {
   name: "Umesh Budhathoki",
   firstName: "Umesh",
   lastName: "Budhathoki",
-  role: "Business Systems Developer & Analyst",
+  role: "IT Manager",
   company: "Buller District Council",
-  tagline: "Full-Stack Developer crafting web, mobile & cloud systems.",
+  tagline: "IT Manager leading technology services, security and digital transformation.",
   location: "West Coast, New Zealand",
   email: "Umesh.budathoki23@gmail.com",
   summary:
-    "MIT graduate and full-stack developer who turns business needs into practical, scalable software. Design and build in-house applications, integrations and APIs across council core systems — from .NET and Blazor platforms to React front-ends, mobile apps and cloud automation.",
+    "IT Manager with a software development background and a passion for using technology to solve practical problems. Experience spans IT service delivery, infrastructure, telecommunications, information systems, GIS, security, business continuity and technology projects — connecting technology decisions with real organisational needs.",
   about:
-    "A software engineer based on New Zealand's West Coast with a Master of Information Technology (First Class Honours). Over the past several years have shipped products across .NET, React, Flutter and Azure — building everything from enterprise web platforms and community mobile apps to native macOS utilities. The whole journey: understanding the problem, designing the architecture, writing clean code, and translating technical concepts into plain language for the people who use them.",
+    "Before moving into IT leadership, I designed and developed web and mobile applications using Java and .NET technologies, including Spring, Hibernate, C#, ASP.NET and MVC. I've worked with cross-functional teams, supported junior developers and contributed to curriculum development. I hold a Master's in Information Technology and a BSc in Computing, and I'm especially interested in reliable and secure technology, thoughtful service improvement, and the evolving opportunities in AI, data science and software engineering.",
   github: "https://github.com/umesheo",
   linkedin: "https://www.linkedin.com/in/umesh-budhathoki-208832106/",
   socials: [
@@ -19,7 +19,7 @@ export const profile = {
     { label: "GitHub", href: "https://github.com/umesheo" },
   ],
   stats: [
-    { value: "6+", label: "Years building software" },
+    { value: "6+", label: "Years in technology" },
     { value: "15+", label: "Projects shipped" },
     { value: "2", label: "First-class degrees" },
     { value: "∞", label: "Cups of coffee" },
@@ -29,8 +29,26 @@ export const profile = {
 export const experiences = [
   {
     company: "Buller District Council",
+    role: "IT Manager",
+    period: "Oct 2026 — Present",
+    location: "New Zealand · Hybrid",
+    points: [
+      "Lead IT and telecommunications for Buller District Council, aligning technology services and investments with organisational needs.",
+      "Oversee IT infrastructure, networks, telecommunications, systems availability, security and upgrade planning.",
+      "Lead IT support and coordinate technology changes, user access, training and supplier issue resolution.",
+      "Lead business transformation processes across the organisation.",
+      "Strengthen the council's cybersecurity posture and resilience.",
+      "Improve council workflows and processes through AI-enabled solutions.",
+      "Guide IT business continuity, disaster recovery and backup arrangements.",
+      "Oversee GIS, databases, information management systems, websites and collaboration platforms.",
+      "Identify opportunities to improve business processes and deliver technology projects — including planning, implementation, training and handover.",
+      "Develop IT roadmaps, standards and plans that support council priorities.",
+    ],
+  },
+  {
+    company: "Buller District Council",
     role: "Business Systems Developer & Analyst",
-    period: "Apr 2026 — Present",
+    period: "Apr 2026 — Oct 2026",
     location: "New Zealand · Hybrid",
     points: [
       "Design, develop and maintain in-house applications, integrations and APIs across the council's core systems.",

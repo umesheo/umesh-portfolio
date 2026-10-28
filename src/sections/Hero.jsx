@@ -54,7 +54,7 @@ export default function Hero() {
                 initial="hidden"
                 animate="show"
               >
-                Business Systems
+                IT Manager
               </motion.span>
             </span>
             <span className="line">
@@ -66,7 +66,7 @@ export default function Hero() {
                 animate="show"
                 className="grad"
               >
-                Developer
+                & Technology
               </motion.span>
             </span>
             <span className="line">
@@ -77,7 +77,7 @@ export default function Hero() {
                 initial="hidden"
                 animate="show"
               >
-                & Analyst.
+                Leader.
               </motion.span>
             </span>
           </h1>
@@ -89,9 +89,10 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
-            Hi, I'm <strong>Umesh</strong> — a full-stack developer at{" "}
-            <strong>Buller District Council</strong>. Expertise in web, mobile and
-            cloud systems that turn complex problems into clean, usable products.
+            Hi, I'm <strong>Umesh</strong> — IT Manager at{" "}
+            <strong>Buller District Council</strong>. I lead technology services,
+            infrastructure, cybersecurity and digital transformation, with a
+            background in software development.
           </motion.p>
 
           <motion.div
